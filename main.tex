@@ -1,0 +1,134 @@
+\documentclass[a4paper, fontsize=12pt, parskip=full, toc=bibliographynumbered]{scrreprt}
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{mathptmx}
+\usepackage{tgheros}
+\usepackage{courier}
+\usepackage{microtype}
+\usepackage[onehalfspacing]{setspace}
+\usepackage[defaultlines=2, all]{nowidow}
+\usepackage[left=4cm, right=2cm, top=2.5cm, bottom=2.5cm]{geometry}
+\usepackage[ngerman]{babel}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{graphicx}
+\usepackage{tabu}
+\usepackage{float}
+\usepackage[footnote]{acronym}
+\usepackage[ngerman]{cleveref}
+\usepackage{eurosym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{thmbox}
+\usepackage{shadethm}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\makeatletter
+\g@addto@macro{\maketitle}{\def\author#1{\def\@author{#1}}}
+\newcommand*{\extendsectlevel}[1]{%
+  \expandafter\newcommand\expandafter*\csname saved@#1\endcsname{}%
+  \expandafter\let\csname saved@#1\expandafter\endcsname\csname #1\endcsname
+  \expandafter\renewcommand\expandafter*\csname #1\endcsname{%
+    \expandafter\let\csname author@#1\endcsname\@author
+    \@ifstar
+      {\csname star@#1\endcsname}%
+      {\@dblarg{\csname opt@#1\endcsname}}%
+  }%
+  \expandafter\newcommand\expandafter*\csname star@#1\endcsname[1]{%
+    \csname saved@#1\endcsname*{##1%
+      \expandafter\ifx\csname author@#1\endcsname\@empty\else
+        \hfill\linebreak{\normalsize
+          \textmd{\textit{\csname author@#1\endcsname}}}%
+      \fi
+    }%
+  }%
+  \expandafter\newcommand\expandafter*\csname opt@#1\endcsname[2][]{%
+    \csname saved@#1\endcsname[{##1%
+      \expandafter\ifx\csname author@#1\endcsname\@empty\else
+        \enskip\textmd{\textit{(\csname author@#1\endcsname)}}%
+      \fi
+    }]{##2%
+      \expandafter\ifx\csname author@#1\endcsname\@empty\else
+        \hfill\linebreak{\normalsize
+          \textmd{\textit{\csname author@#1\endcsname}}}%
+      \fi
+    }%
+  }%
+}
+\extendsectlevel{subsection}
+\makeatother
+\begin{document}
+\newcommand{\headerrule}{\tabucline -}
+\newcommand{\abbildung}[2]{\begin{figure}\centering
+    \fbox{\includegraphics[width=0.8\textwidth]{#1}}\caption{#2}
+    \label{fig:#1}\end{figure}}
+\setkomafont{chapterentry}{\bfseries}
+
+\author{}
+\begin{titlepage}
+  \begin{center}
+    \textsc{\large Fachhochschule der Wirtschaft\\FHDW}\\[1em]
+    \textsc{\large Bergisch Gladbach}\\[2em]
+    \textsc{Schriftliche Ausarbeitung}\\[6em]
+    {\LARGE Unternehmensethik}\\[25em]
+    \begin{tabu} to 0.8\textwidth {X[l] X[r]}
+      \emph{Autoren:}\linebreak
+      An-Nam \textsc{Pham},\linebreak
+      Leonie \textsc{Schiburr},\linebreak
+      Vasilij \textsc{Schneidermann}
+      &
+      \emph{Prüfer:}\linebreak
+      Albena \textsc{Neschen}
+    \end{tabu}
+    \vfill
+    \emph{Abgabetermin:}\\
+    \today
+  \end{center}
+\end{titlepage}
+
+\pagenumbering{roman}
+\tableofcontents
+\listoffigures
+\listoftables
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\chapter{Einleitung}
+
+\chapter{Evaluation}
+
+\section{Unternehmen}
+
+\section{Ethiken}
+
+\input{an-nam}
+\input{vasilij}
+\input{leonie}
+
+\section{Implementierung}
+
+\section{Maßnahmen}
+
+\section{Nachhaltigkeit}
+
+\chapter{Fazit}
+
+\chapter{Ehrenwörtliche Erklärung}
+
+Hiermit versichern wir diese Arbeit selbstständig verfasst und keine
+anderen als die angegebenen Quellen benutzt zu haben.  Wörtliche und
+sinngemäße Zitate sind kenntlich gemacht.  Über Zitierrichtlinien
+sind wir schriftlich informiert worden.
+
+\renewcommand{\bibname}{Quellenverzeichnis}
+\begin{thebibliography}{9}
+  \BreakBibliography{\minisec{Monographien}}
+\bibitem{foo} Doe, John (1970), \emph{Random Book}, 1. Auflage, 1970
+  \BreakBibliography{\minisec{Internetquellen}}
+\bibitem{bar} Doe, John (2015), \emph{Random Rant}, Online im
+  Internet: \url{http://example.com/}, Stand: 01.01.2015
+\end{thebibliography}
+
+\end{document}

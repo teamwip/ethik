@@ -1,0 +1,9 @@
+auto/
+*.aux
+*.lof
+*.log
+*.lot
+*.lol
+*.out
+*.pdf
+*.toc
